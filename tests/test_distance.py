@@ -1,0 +1,52 @@
+import unittest
+import json
+from flask import Flask
+
+from distance.distance import distance_blueprint
+
+
+class DistanceBlueprintTestCase(unittest.TestCase):
+    def setUp(self):
+        self.app = Flask(__name__)
+        self.app_context = self.app.app_context()
+        self.app_context.push()
+        self.app.register_blueprint(distance_blueprint)
+        self.client = self.app.test_client()
+
+    def test_correct_address(self):
+        with self.app.app_context():
+            param = 'Rio de Janeiro'
+            expected_distance = 11545.94
+            result = self.client.get(f'/distance/{param}')
+            status = result.status_code
+            result = json.loads(result.data)
+            expected = {
+                'distance': expected_distance,
+                'origin': param
+            }
+            self.assertEqual(result, expected)
+            self.assertEqual(status, 200)
+
+    def test_not_found_address(self):
+        with self.app.app_context():
+            param = '----'
+            result = self.client.get(f'/distance/{param}')
+            status = result.status_code
+            result = json.loads(result.data)
+            expected = {'error': 'Address not found'}
+            self.assertEqual(result, expected)
+            self.assertEqual(status, 404)
+
+    def test_none_address(self):
+        with self.app.app_context():
+            param = 'None'
+            result = self.client.get(f'/distance/{param}')
+            status = result.status_code
+            result = json.loads(result.data)
+            expected = {'error': 'Please enter an addres'}
+            self.assertEqual(result, expected)
+            self.assertEqual(status, 400)
+
+
+if (__name__ == '__main__'):
+    unittest.main(verbosity=2)
