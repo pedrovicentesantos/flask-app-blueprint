@@ -20,7 +20,7 @@ def index():
         # Gets the address sent via HTTP request
         address = request.args.get('address')
         if (not address):
-            response = jsonify({'error': 'Please enter an addres'})
+            response = jsonify({'error': 'Please enter an address'})
             response.status_code = 400
 
             return response
