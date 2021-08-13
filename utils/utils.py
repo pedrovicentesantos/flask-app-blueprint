@@ -49,3 +49,16 @@ def save_log(address, distance):
     log_path = os.path.join(os.getcwd(), os.getenv('LOG_PATH'), 'log.log')
     with open(log_path, 'a') as file:
         file.write(f'{address}: {distance}\n')
+
+
+def is_inside_mkad(distance):
+    '''
+    From the coordinates found in:
+    https://en.wikipedia.org/wiki/Module:Location_map/data/Russia_Moscow_Ring_Road/doc
+    We can define a circle with radius 29.05.
+    If a point is distant from center by more than 29.05
+    then it's outside of MKAD
+    Otherwise is inside MKAD.
+    '''
+    MKAD_RADIUS = 29.05
+    return distance <= MKAD_RADIUS

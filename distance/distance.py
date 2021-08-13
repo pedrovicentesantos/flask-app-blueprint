@@ -1,7 +1,7 @@
 import requests
 from flask import Blueprint, json, jsonify
 
-from utils.utils import haversine, save_log
+from utils.utils import haversine, save_log, is_inside_mkad
 from utils.constants import API_KEY, BASE_URL, MKAD_LAT, MKAD_LON
 
 distance_blueprint = Blueprint('distance_blueprint', __name__)
@@ -63,7 +63,10 @@ def index(address):
                 return response
 
             distance = haversine(MKAD_LON, MKAD_LAT, lon, lat)
-            distance = round(distance, 2)
+            if (is_inside_mkad(distance)):
+                distance = 'Inside MKAD'
+            else:
+                distance = round(distance, 2)
 
             response = jsonify({
                 'distance': distance,
