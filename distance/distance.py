@@ -61,10 +61,9 @@ def index(address):
                 response.status_code = 404
 
                 return response
-
             distance = haversine(
-                os.getenv('MKAD_LON'),
-                os.getenv('MKAD_LAT'),
+                float(os.getenv('MKAD_LON')),
+                float(os.getenv('MKAD_LAT')),
                 lon,
                 lat
             )
