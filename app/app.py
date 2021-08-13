@@ -24,7 +24,6 @@ def create_app(config_name):
     '''
     @app.errorhandler(404)
     def page_not_found(e):
-        print(e)
         response = jsonify({'error': 'Page not found', 'cause': str(e)})
         response.status_code = 404
 
