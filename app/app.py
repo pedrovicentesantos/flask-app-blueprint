@@ -23,4 +23,4 @@ def create_app(config_name):
 
 if (__name__ == '__main__'):
     app = create_app('development')
-    app.run()
+    app.run(debug=True)

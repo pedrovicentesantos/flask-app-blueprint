@@ -1,8 +1,6 @@
 import unittest
 import json
-from flask import Flask
 
-from distance.distance import distance_blueprint
 from app.app import create_app
 
 

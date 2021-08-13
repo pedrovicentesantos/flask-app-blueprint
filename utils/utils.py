@@ -22,10 +22,10 @@ def deg_to_rad(deg):
 
 def haversine(lon1, lat1, lon2, lat2):
     '''
-    Calculate the great circle distance between two points
+    Calculates the great circle distance between two points
     on the earth (specified in decimal degrees)
     '''
-    radius = 6371  # Radius of earth in kilometers.
+    radius = 6371  # Radius of earth in kilometers
 
     # Convert degrees to radians
     lon1, lat1, lon2, lat2 = map(deg_to_rad, [lon1, lat1, lon2, lat2])
@@ -44,7 +44,7 @@ def haversine(lon1, lat1, lon2, lat2):
 def save_log(address, distance):
     '''
     Saves the address sent via HTTP request and
-    distance from Moscow Ring Road
+    distance from Moscow Ring Road in log file
     '''
     log_path = os.path.join(os.getcwd(), os.getenv('LOG_PATH'), 'log.log')
     with open(log_path, 'a') as file:
@@ -55,10 +55,10 @@ def is_inside_mkad(distance):
     '''
     From the coordinates found in:
     https://en.wikipedia.org/wiki/Module:Location_map/data/Russia_Moscow_Ring_Road/doc
-    We can define a circle with radius 29.05.
+    we can define a circle with radius 29.05.
     If a point is distant from center by more than 29.05
     then it's outside of MKAD
-    Otherwise is inside MKAD.
+    Otherwise is inside MKAD
     '''
     MKAD_RADIUS = 29.05
     return distance <= MKAD_RADIUS
