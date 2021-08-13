@@ -37,16 +37,6 @@ class DistanceBlueprintTestCase(unittest.TestCase):
             self.assertEqual(result, expected)
             self.assertEqual(status, 404)
 
-    def test_none_address(self):
-        with self.app.app_context():
-            param = 'None'
-            result = self.client.get(f'/distance/{param}')
-            status = result.status_code
-            result = json.loads(result.data)
-            expected = {'error': 'Please enter an addres'}
-            self.assertEqual(result, expected)
-            self.assertEqual(status, 400)
-
 
 if (__name__ == '__main__'):
     unittest.main(verbosity=2)

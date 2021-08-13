@@ -10,9 +10,6 @@ distance_blueprint = Blueprint('distance_blueprint', __name__)
 @distance_blueprint.route('/distance/<string:address>')
 def index(address):
     try:
-        if (address == 'None'):
-            address = None
-
         if (not address):
             response = jsonify({'error': 'Please enter an addres'})
             response.status_code = 400
@@ -20,6 +17,7 @@ def index(address):
             return response
 
         address = address.strip()
+
         params = {
             'key': API_KEY,
             'address': address
