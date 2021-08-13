@@ -17,6 +17,8 @@ def load_config(config_name):
 
 
 def deg_to_rad(deg):
+    if (not isinstance(deg, int) and not isinstance(deg, float)):
+        return None
     return deg * (pi / 180)
 
 
