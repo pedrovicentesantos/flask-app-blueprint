@@ -1,7 +1,6 @@
 '''
-Test case for the distance blueprint
+Test case for the flask application
 '''
-from logging import setLoggerClass
 import unittest
 import json
 

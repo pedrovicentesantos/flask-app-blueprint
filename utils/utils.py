@@ -6,14 +6,14 @@ from dotenv import load_dotenv
 def load_config(config_name):
     current_dir = os.getcwd()
     default_config = os.path.join(current_dir, '.env')
-    load_dotenv(default_config)
+    load_dotenv(default_config, override=True)
 
     if (config_name == 'testing'):
         testing_config = os.path.join(current_dir, '.env_testing')
-        load_dotenv(testing_config)
+        load_dotenv(testing_config, override=True)
     else:
         dev_config = os.path.join(current_dir, '.env_dev')
-        load_dotenv(dev_config)
+        load_dotenv(dev_config, override=True)
 
 
 def deg_to_rad(deg):
