@@ -1,8 +1,12 @@
 from flask import Flask, jsonify
+
 from distance.distance import distance_blueprint
+from utils.utils import load_config
 
 
-def create_app():
+def create_app(config_name):
+    load_config(config_name)
+
     app = Flask(__name__)
     app.register_blueprint(distance_blueprint)
 
@@ -18,5 +22,5 @@ def create_app():
 
 
 if (__name__ == '__main__'):
-    app = create_app()
+    app = create_app('development')
     app.run()

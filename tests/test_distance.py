@@ -3,14 +3,14 @@ import json
 from flask import Flask
 
 from distance.distance import distance_blueprint
+from app.app import create_app
 
 
 class DistanceBlueprintTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = Flask(__name__)
+        self.app = create_app('testing')
         self.app_context = self.app.app_context()
         self.app_context.push()
-        self.app.register_blueprint(distance_blueprint)
         self.client = self.app.test_client()
 
     def test_correct_address(self):

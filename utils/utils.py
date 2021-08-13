@@ -1,7 +1,19 @@
 import os
 from math import cos, sin, asin, sqrt, pi
+from dotenv import load_dotenv
 
-from utils.constants import CURRENT_PATH
+
+def load_config(config_name):
+    current_dir = os.getcwd()
+    default_config = os.path.join(current_dir, '.env')
+    load_dotenv(default_config)
+
+    if (config_name == 'testing'):
+        testing_config = os.path.join(current_dir, '.env_testing')
+        load_dotenv(testing_config)
+    else:
+        dev_config = os.path.join(current_dir, '.env_dev')
+        load_dotenv(dev_config)
 
 
 def deg_to_rad(deg):
@@ -34,6 +46,6 @@ def save_log(address, distance):
     Saves the address sent via HTTP request and
     distance from Moscow Ring Road
     '''
-    log_path = os.path.join(CURRENT_PATH, 'log', 'log.log')
+    log_path = os.path.join(os.getcwd(), os.getenv('LOG_PATH'), 'log.log')
     with open(log_path, 'a') as file:
         file.write(f'{address}: {distance}\n')
