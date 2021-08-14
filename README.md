@@ -27,6 +27,8 @@ pip install -r requirements.txt # Installs the dependencies
 python app/app.py # Runs the application
 ```
 
+It's necessary Python version 3.8+.
+
 ## How to use the application
 
 The API has only one endpoint, `/distance` and can be accessed in http://localhost:5000. To use this endpoint the user needs to pass the address as query parameter.
