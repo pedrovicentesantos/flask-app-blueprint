@@ -8,7 +8,7 @@ import os
 from utils.utils import load_config, save_log
 
 
-class LoadConfigTestCase(unittest.TestCase):
+class SaveLogTestCase(unittest.TestCase):
     def setUp(self):
         '''
         Loads testing config for using

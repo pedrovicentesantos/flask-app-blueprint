@@ -66,5 +66,8 @@ def is_inside_mkad(distance):
     then it's outside of MKAD
     Otherwise is inside MKAD
     '''
+    if (not isinstance(distance, int) and not isinstance(distance, float)):
+        return None
+
     MKAD_RADIUS = 29.05
     return distance <= MKAD_RADIUS

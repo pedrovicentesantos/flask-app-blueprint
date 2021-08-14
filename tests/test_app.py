@@ -7,7 +7,7 @@ import json
 from app.app import create_app
 
 
-class DistanceBlueprintTestCase(unittest.TestCase):
+class FlaskAppTestCase(unittest.TestCase):
     def setUp(self):
         '''
         Creates app before all the tests
