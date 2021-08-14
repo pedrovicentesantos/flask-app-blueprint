@@ -27,6 +27,10 @@ def haversine(lon1, lat1, lon2, lat2):
     Calculates the great circle distance between two points
     on the earth (specified in decimal degrees)
     '''
+    for value in locals().values():
+        if (not isinstance(value, int) and not isinstance(value, float)):
+            return None
+
     radius = 6371  # Radius of earth in kilometers
 
     # Convert degrees to radians
