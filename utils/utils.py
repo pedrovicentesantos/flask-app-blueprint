@@ -1,9 +1,10 @@
 import os
 from math import cos, sin, asin, sqrt, pi
 from dotenv import load_dotenv
+from typing import Union
 
 
-def load_config(config_name):
+def load_config(config_name: str) -> None:
     current_dir = os.getcwd()
     default_config = os.path.join(current_dir, '.env')
     load_dotenv(default_config, override=True)
@@ -16,13 +17,18 @@ def load_config(config_name):
         load_dotenv(dev_config, override=True)
 
 
-def deg_to_rad(deg):
+def deg_to_rad(deg: Union[int, float]) -> float:
     if (not isinstance(deg, int) and not isinstance(deg, float)):
         return None
     return deg * (pi / 180)
 
 
-def haversine(lon1, lat1, lon2, lat2):
+def haversine(
+    lon1: Union[int, float],
+    lat1: Union[int, float],
+    lon2: Union[int, float],
+    lat2: Union[int, float]
+) -> float:
     '''
     Calculates the great circle distance between two points
     on the earth (specified in decimal degrees)
@@ -47,7 +53,7 @@ def haversine(lon1, lat1, lon2, lat2):
     return center * radius
 
 
-def save_log(address, distance):
+def save_log(address: str, distance: Union[int, float]) -> None:
     '''
     Saves the address sent via HTTP request and
     distance from Moscow Ring Road in log file
@@ -57,7 +63,7 @@ def save_log(address, distance):
         file.write(f'{address}: {distance}\n')
 
 
-def is_inside_mkad(distance):
+def is_inside_mkad(distance: Union[int, float]) -> bool:
     '''
     From the coordinates found in:
     https://en.wikipedia.org/wiki/Module:Location_map/data/Russia_Moscow_Ring_Road/doc

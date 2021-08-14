@@ -2,12 +2,13 @@
 Creates the Flask app
 '''
 from flask import Flask, jsonify
+from requests import models
 
 from distance.distance import distance_blueprint
 from utils.utils import load_config
 
 
-def create_app(config_name):
+def create_app(config_name: str) -> Flask:
     '''
     Uses the config name to load
     the correct configurations for app
@@ -23,7 +24,7 @@ def create_app(config_name):
     tries to access a route that doesn't exist
     '''
     @app.errorhandler(404)
-    def page_not_found(e):
+    def page_not_found(e: Exception) -> models.Response:
         response = jsonify({'error': 'Page not found', 'cause': str(e)})
         response.status_code = 404
 

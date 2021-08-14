@@ -15,7 +15,7 @@ distance_blueprint = Blueprint('distance_blueprint', __name__)
 
 
 @distance_blueprint.route('/distance')
-def index():
+def index() -> requests.models.Response:
     try:
         # Gets the address sent via HTTP request
         address = request.args.get('address')
